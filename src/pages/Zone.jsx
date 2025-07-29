@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import useGameStore from "../store/useGameStore";
 import zones from "../data/zones";
 import HUD from "../components/HUD";
+import InsanityFX from '../components/insanityFX';
+import { uselightAndSanityEngine } from '../engine/lightAndSanityEngine';
 
 export default function Zone({ zoneId }) {
     const zone = zones[zoneId];
     const navigate = useNavigate();
     const addZone = useGameStore(state => state.addZone);
+
+    uselightAndSanityEngine(); //activates drain
 
     useEffect(() => {
         if (zoneId) addZone(zoneId);
@@ -18,6 +22,7 @@ export default function Zone({ zoneId }) {
     return (
         <div className='h-screen bg-black text-white flex flex-col items-center justify-center text-center p-10'>
             <HUD />
+            <InsanityFX />
             <h1 className='text-4xl mb-4'>{zone.name}</h1>
             <p className='max-w-xl text-fog mb-8'>{zone.description}</p>
             <div className='flex gap-4'>

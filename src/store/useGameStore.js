@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 const useGameStore = create((set) => ({
     sanity: 100,
-    lightLevel: 100,
+    light: 100,
     visitedZones: [],
     endingFlags: {},
 
